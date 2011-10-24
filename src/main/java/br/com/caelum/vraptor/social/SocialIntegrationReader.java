@@ -1,6 +1,6 @@
 package br.com.caelum.vraptor.social;
 
-import br.com.caelum.vraptor.social.twitter.Profile;
+import br.com.caelum.vraptor.social.twitter.TwitterProfile;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 import net.vidageek.mirror.dsl.Mirror;
@@ -22,7 +22,7 @@ public class SocialIntegrationReader<T> {
                 };
             }
         };
-        xs.processAnnotations(Profile.class);
+        xs.processAnnotations(TwitterProfile.class);
     }
 
     public T from(String xml) {
