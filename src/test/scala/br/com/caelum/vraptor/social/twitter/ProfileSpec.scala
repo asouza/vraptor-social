@@ -87,7 +87,7 @@ class ProfileSpec extends FlatSpec with ShouldMatchers{
   behavior of "parsing the profile xml"
 
   it should "create the profile object based on returned xml" in {
-    val profile = new SocialIntegrationReader[TwitterProfile]().from(profileXML.toString)
+    val profile = new SocialIntegrationReader().from[TwitterProfile](profileXML.toString)
     profile.getName should be === "Alberto Souza"
     profile.getImage should be === "http://a3.twimg.com/profile_images/257134529/PHOT0023_normal.JPG"
     profile.getId should be === "29437870"

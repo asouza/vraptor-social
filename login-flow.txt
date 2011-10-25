@@ -4,4 +4,4 @@
 
 2 - An application controller callback is mapped to be invoked by the platform
 
-3 - An vraptor-social interceptor will intercept the controller to create the user profile
+3 - An vraptor-social component will create the operations available and the controller just need to get injected

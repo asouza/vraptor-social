@@ -1,11 +1,15 @@
 package br.com.caelum.vraptor.social;
 
+import br.com.caelum.vraptor.ioc.ApplicationScoped;
+import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.social.twitter.TwitterProfile;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 import net.vidageek.mirror.dsl.Mirror;
 
-public class SocialIntegrationReader<T> {
+@Component
+@ApplicationScoped
+public class SocialIntegrationReader {
 
     private XStream xs;
 
@@ -25,7 +29,7 @@ public class SocialIntegrationReader<T> {
         xs.processAnnotations(TwitterProfile.class);
     }
 
-    public T from(String xml) {
+    public <T> T from(String xml) {
         return (T) xs.fromXML(xml);
     }
 }

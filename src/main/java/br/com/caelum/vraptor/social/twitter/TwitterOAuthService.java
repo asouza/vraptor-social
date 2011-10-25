@@ -24,7 +24,11 @@ public class TwitterOAuthService {
     public void init() {
         this.service = new ServiceBuilder().provider(TwitterApi.class).
                 apiKey(environment.get("twitter.consumer_key")).
-                apiSecret(environment.get("twitter.consumer_secret_key")).build();
+                apiSecret(getConsumerSecretKey()).callback(environment.get("twitter.callback_url")).build();
+    }
+
+    public String getConsumerSecretKey(){
+        return environment.get("twitter.consumer_secret_key");
     }
 
     public OAuthService get(){

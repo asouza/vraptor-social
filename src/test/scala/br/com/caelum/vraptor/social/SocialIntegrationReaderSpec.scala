@@ -11,7 +11,7 @@ class SocialIntegrationReaderSpec extends FlatSpec with ShouldMatchers {
     val someXML = <br.com.caelum.vraptor.social.FakeUser>
       <name>teste</name> <email>email</email>
     </br.com.caelum.vraptor.social.FakeUser>
-    val user = new SocialIntegrationReader[FakeUser].from(someXML.toString)
+    val user = new SocialIntegrationReader().from[FakeUser](someXML.toString)
     user.name should be === "teste"
   }
 
@@ -19,7 +19,7 @@ class SocialIntegrationReaderSpec extends FlatSpec with ShouldMatchers {
     val someXML = <br.com.caelum.vraptor.social.FakeUser2>
       <name>teste</name> <email>email</email>
     </br.com.caelum.vraptor.social.FakeUser2>
-    val user = new SocialIntegrationReader[FakeUser2].from(someXML.toString)
+    val user = new SocialIntegrationReader().from[FakeUser2](someXML.toString)
     user.name should be === "teste"
     user.email should  be === "email"
   }
