@@ -1,0 +1,7 @@
+1 - Generate a link to login
+
+2 - user click and login
+
+2 - An application controller callback is mapped to be invoked by the platform
+
+3 - An vraptor-social interceptor will intercept the controller to create the user profile

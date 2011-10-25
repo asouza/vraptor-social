@@ -13,9 +13,10 @@ resolvers ++= Seq(
   "repo1"     at "http://repo1.maven.org/maven2/")
 
 libraryDependencies ++= Seq(
-  "br.com.caelum"           % "vraptor"               % "3.4.0"                   % "compile",
-  "org.scribe"              % "scribe"                % "1.2.3"                   % "compile",
-  "com.thoughtworks.xstream" % "xstream"              % "1.4.1"                   % "compile",
-  "org.scalatest"           %% "scalatest"             % "1.6.1"                   % "test",
-  "org.mockito"             % "mockito-core"          % "1.8.5"           		  % "test"
+  "br.com.caelum"            % "vraptor"               % "3.4.0"                   % "compile",
+  "org.scribe"               % "scribe"                % "1.2.3"                   % "compile",
+  "com.thoughtworks.xstream" % "xstream"               % "1.4.1"                   % "compile",
+  "br.com.caelum.vraptor"    % "vraptor-environment"   % "1.0.1"                   % "compile",
+  "org.scalatest"            %% "scalatest"            % "1.6.1"                   % "test",
+  "org.mockito"              % "mockito-core"          % "1.8.5"           		   % "test"
 )
