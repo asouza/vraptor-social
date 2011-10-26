@@ -4,6 +4,8 @@ version := "0.1"
 
 scalaVersion := "2.9.1"
 
+javacOptions ++= Seq("-g")
+
 resolvers ++= Seq(
   "jboss"     at "http://repository.jboss.org/nexus/content/groups/public/",
   "snapshots" at "http://scala-tools.org/repo-snapshots",

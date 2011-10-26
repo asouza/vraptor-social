@@ -7,7 +7,7 @@ import com.thoughtworks.xstream.mapper.MapperWrapper
 import net.vidageek.mirror.dsl.Mirror
 import br.com.caelum.vraptor.social.SocialIntegrationReader
 
-class ProfileSpec extends FlatSpec with ShouldMatchers{
+class TwitterProfileSpec extends FlatSpec with ShouldMatchers{
 
   val profileXML = <user>
     <id>29437870</id>
@@ -92,6 +92,7 @@ class ProfileSpec extends FlatSpec with ShouldMatchers{
     profile.getImage should be === "http://a3.twimg.com/profile_images/257134529/PHOT0023_normal.JPG"
     profile.getId should be === "29437870"
     profile.getNumberOfFollowers should be === 318
+    profile.getScreenName should be === "alberto_souza"
   }
 
 

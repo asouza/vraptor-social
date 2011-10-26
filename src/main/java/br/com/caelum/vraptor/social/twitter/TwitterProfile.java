@@ -11,6 +11,8 @@ public class TwitterProfile {
     private String image;
     @XStreamAlias("followers_count")
     private int numberOfFollowers;
+    @XStreamAlias("screen_name")
+    private String screenName;
 
     public String getName() {
         return name;
@@ -27,5 +29,10 @@ public class TwitterProfile {
     public String getId() {
 
         return id;
+    }
+
+
+    public String getScreenName() {
+        return screenName;
     }
 }
