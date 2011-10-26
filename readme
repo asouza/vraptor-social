@@ -21,5 +21,5 @@ Using
       facebook.consumer_secret_key = 
       facebook.callback_url = http://www.vraptor-social.com.br/facebook/callback
       #to test facebook, i had to edit my etc/hosts to map this site to 127.0.0.1. 
-      #As far as i know, facebook do not allow you to create localhost url as twitter
+      #As far as i know, facebook does not allow you to create localhost url as twitter
 
