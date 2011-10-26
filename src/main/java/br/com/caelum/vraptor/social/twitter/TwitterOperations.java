@@ -22,6 +22,9 @@ public class TwitterOperations {
     public TwitterOperations(HttpServletRequest request, TwitterOAuthService twitterOAuthService){
         this.oauthToken = request.getParameter("oauth_token");
         this.oauthVerifier = request.getParameter("oauth_verifier");
+        if (oauthToken == null || oauthVerifier == null) {
+            throw new IllegalStateException("You should not try to use Twitter Operations out of callback context");
+        }
         this.twitterOAuthService = twitterOAuthService;
         this.oauthService = twitterOAuthService.getOAuthService();
 
