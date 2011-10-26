@@ -1,1 +1,25 @@
-Just a initial work. First attempt will be using twitter as integration platform
+Just some tips for the braves that will try to use this lib while we are at this stage.
+
+1 - it is not mavenized, so you have to follow the build.sbt to get the dependencies
+2 - copy the jar that is in dist folder to your web-inf/lib
+
+Using
+
+  1 - To generate the oauth urls to login users just receive Twitter|FacebookAuthorizationUrlProvider as parameter in 
+      your constructor. After that, just invoke the getUrl method.
+  2 - To get profile information about the logged user, just receive Twitter|FacebookOperations as parameter in your
+      constructor. After that, you can invoke the getProfile method to access some informations.
+  3 - Finally, you have to configure your access credentials to access the platform. Below you have the keys that
+      must be created in development|productions.properties. This project uses vraptor-environment plugin to do not
+      obligate you to create another properties file.
+  
+      twitter.consumer_key = 
+      twitter.consumer_secret_key = 
+      twitter.callback_url = http://localhost:8080/twitter/callback
+
+      facebook.consumer_key = 
+      facebook.consumer_secret_key = 
+      facebook.callback_url = http://www.vraptor-social.com.br/facebook/callback
+      #to test facebook, i had to edit my etc/hosts to map this site to 127.0.0.1. 
+      #As far as i know, facebook do not allow you to create localhost url as twitter
+
