@@ -3,7 +3,6 @@ package br.com.caelum.vraptor.social.twitter;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-@XStreamAlias("user")
 public class TwitterProfile {
     private String id;
     private String name;

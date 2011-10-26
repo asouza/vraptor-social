@@ -12,44 +12,38 @@ import javax.servlet.http.HttpServletRequest;
 public class TwitterOperations {
 
     private TwitterOAuthService twitterOAuthService;
-    private SocialIntegrationReader socialIntegrationReader;
     private String oauthToken;
     private String oauthVerifier;
     private OAuthService oauthService;
     private Verifier verifier;
-    private Token requestToken;
     private Token accessToken;
     private TwitterProfile twitterProfile;
 
-    public TwitterOperations(HttpServletRequest request, TwitterOAuthService twitterOAuthService,
-                              SocialIntegrationReader socialIntegrationReader) {
+    public TwitterOperations(HttpServletRequest request, TwitterOAuthService twitterOAuthService){
         this.oauthToken = request.getParameter("oauth_token");
         this.oauthVerifier = request.getParameter("oauth_verifier");
-        if(oauthToken==null || oauthVerifier == null){
+        if (oauthToken == null || oauthVerifier == null) {
             throw new IllegalStateException("You should not try to use Twitter Operations out of callback context");
         }
         this.twitterOAuthService = twitterOAuthService;
-        this.socialIntegrationReader = socialIntegrationReader;
-        this.oauthService = twitterOAuthService.get();
+        this.oauthService = twitterOAuthService.getOAuthService();
 
     }
 
     @PostConstruct
     public void build() {
         verifier = new Verifier(oauthVerifier);
-        requestToken = new Token(oauthToken, twitterOAuthService.getConsumerSecretKey());
+        Token requestToken = new Token(oauthToken, twitterOAuthService.getConsumerSecretKey());
         accessToken = oauthService.getAccessToken(requestToken, verifier);
         initProfile();
     }
 
     private void initProfile() {
-        OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json");
-        oauthService.signRequest(accessToken, request);
-        Response response = request.send();
-        twitterProfile = socialIntegrationReader.from(response.getBody(),TwitterProfile.class);
+        twitterProfile = twitterOAuthService.signRequest("http://api.twitter.com/1/account/verify_credentials.json",
+                         accessToken, TwitterProfile.class);
     }
 
-    public TwitterProfile getProfile(){
+    public TwitterProfile getProfile() {
         return twitterProfile;
     }
 }

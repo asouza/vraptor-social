@@ -22,7 +22,7 @@ class FacebookProfileSpec extends FlatSpec with ShouldMatchers {
 
   behavior of "reading some facebook information"
 
-  it should "get needed information" in {
+  it should "getOAuthService needed information" in {
       val profile = new SocialIntegrationReader().from(jsonProfile,classOf[FacebookProfile])
       profile.getFirstName should be === "Alberto"
       profile.getId should be === "100001209838248"

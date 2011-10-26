@@ -11,7 +11,7 @@ public class TwitterAuthorizationUrlProvider {
     private OAuthService service;
 
     public TwitterAuthorizationUrlProvider(TwitterOAuthService twitterOAuthService) {
-        this.service = twitterOAuthService.get();
+        this.service = twitterOAuthService.getOAuthService();
     }
 
     public String getUrl(){
