@@ -21,9 +21,6 @@ public class FacebookOperations {
 
     public FacebookOperations(HttpServletRequest request, FacebookOAuthService facebookOAuthService) {
         this.code = request.getParameter("code");
-        if(code ==null){
-            throw new IllegalStateException("You should not try to use FacebookOperations out of callback context");
-        }
         this.facebookOAuthService = facebookOAuthService;
         this.oauthService = facebookOAuthService.getOAuthService();
 
