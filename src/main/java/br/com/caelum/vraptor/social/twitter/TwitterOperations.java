@@ -43,10 +43,10 @@ public class TwitterOperations {
     }
 
     private void initProfile() {
-        OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.xml");
+        OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json");
         oauthService.signRequest(accessToken, request);
         Response response = request.send();
-        twitterProfile = socialIntegrationReader.from(response.getBody());
+        twitterProfile = socialIntegrationReader.from(response.getBody(),TwitterProfile.class);
     }
 
     public TwitterProfile getProfile(){

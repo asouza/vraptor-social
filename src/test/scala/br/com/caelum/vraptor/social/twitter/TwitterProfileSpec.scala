@@ -7,94 +7,42 @@ import com.thoughtworks.xstream.mapper.MapperWrapper
 import net.vidageek.mirror.dsl.Mirror
 import br.com.caelum.vraptor.social.SocialIntegrationReader
 
-class TwitterProfileSpec extends FlatSpec with ShouldMatchers{
+class TwitterProfileSpec extends FlatSpec with ShouldMatchers {
 
-  val profileXML = <user>
-    <id>29437870</id>
-    <name>Alberto Souza</name>
-    <screen_name>alberto_souza</screen_name>
-    <location>Salvador</location>
-    <description>Vamo ajudar todo mundo a arrumar lugar para sair no Brasil todo!!!. Indiqueai!!!!!</description>
-    <profile_image_url>http://a3.twimg.com/profile_images/257134529/PHOT0023_normal.JPG</profile_image_url>
-    <profile_image_url_https>https://si0.twimg.com/profile_images/257134529/PHOT0023_normal.JPG</profile_image_url_https>
-    <url>http://www.indiqueai.com.br</url>
-    <protected>false</protected>
-    <followers_count>318</followers_count>
-    <profile_background_color>C0DEED</profile_background_color>
-    <profile_text_color>333333</profile_text_color>
-    <profile_link_color>0084B4</profile_link_color>
-    <profile_sidebar_fill_color>DDEEF6</profile_sidebar_fill_color>
-    <profile_sidebar_border_color>C0DEED</profile_sidebar_border_color>
-    <friends_count>211</friends_count>
-    <created_at>Tue Apr 07 12:34:34 +0000 2009</created_at>
-    <favourites_count>80</favourites_count>
-    <utc_offset>-14400</utc_offset>
-    <time_zone>Santiago</time_zone>
-    <profile_background_image_url>http://a0.twimg.com/images/themes/theme1/bg.png</profile_background_image_url>
-    <profile_background_image_url_https>https://si0.twimg.com/images/themes/theme1/bg.png</profile_background_image_url_https>
-    <profile_background_tile>false</profile_background_tile>
-    <profile_use_background_image>true</profile_use_background_image>
-    <notifications>false</notifications>
-    <geo_enabled>false</geo_enabled>
-    <verified>false</verified>
-    <following>false</following>
-    <statuses_count>1843</statuses_count>
-    <lang>en</lang>
-    <contributors_enabled>false</contributors_enabled>
-    <follow_request_sent>false</follow_request_sent>
-    <listed_count>20</listed_count>
-    <show_all_inline_media>false</show_all_inline_media>
-    <default_profile>true</default_profile>
-    <default_profile_image>false</default_profile_image>
-    <is_translator>false</is_translator>
-    <status>
-      <created_at>Mon Oct 24 00:28:47 +0000 2011</created_at>
-      <id>128266651773841410</id>
-      <text>Estou achando que s
-        &#243;
-        eu n
-        &#227;
-        o conhecia...</text>
-      <source>
-        &lt;
-        a href=
-        &quot;
-        http://www.tweetdeck.com
-        &quot;
-        rel=
-        &quot;
-        nofollow
-        &quot; &gt;
-        TweetDeck
-        &lt;
-        /a
-        &gt;
-      </source>
-      <truncated>false</truncated>
-      <favorited>false</favorited>
-      <in_reply_to_status_id></in_reply_to_status_id>
-      <in_reply_to_user_id></in_reply_to_user_id>
-      <in_reply_to_screen_name></in_reply_to_screen_name>
-      <retweet_count>0</retweet_count>
-      <retweeted>false</retweeted>
-        <geo/>
-        <coordinates/>
-        <place/>
-        <contributors/>
-    </status>
-  </user>
+  val jsonProfile = """{"is_translator":false,"geo_enabled":false,"profile_background_tile":false,
+  "profile_background_image_url_https":"https:\/\/si0.twimg.com\/images\/themes\/theme1\/bg.png",
+  "protected":false,"location":"Salvador","follow_request_sent":false,"friends_count":211,
+  "profile_sidebar_fill_color":"DDEEF6","name":"Alberto Luiz Souza",
+  "url":"http:\/\/www.indiqueai.com.br","utc_offset":-14400,
+  "profile_sidebar_border_color":"C0DEED",
+  "profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/257134529\/PHOT0023_normal.JPG",
+  "description":"Vamo ajudar todo mundo a arrumar lugar para sair no Brasil todo!!!. Indiqueai!!!!!",
+  "following":false,"listed_count":20,"profile_use_background_image":true,
+  "status":{"place":null,"retweet_count":0,"in_reply_to_screen_name":null,"geo":null,
+  "retweeted":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"coordinates":null,
+  "truncated":false,"in_reply_to_user_id_str":null,"created_at":"Tue Oct 25 11:20:49 +0000 2011",
+  "contributors":null,"id_str":"128793127275331584",
+  "source":"\u003Ca href=\"http:\/\/www.tweetdeck.com\" rel=\"nofollow\"\u003ETweetDeck\u003C\/a\u003E",
+  "id":128793127275331584,"in_reply_to_user_id":null,"favorited":false,
+  "text":"comecei a ler a  biografia de steve jobs, vamos ver se rola alguma inspira\u00e7\u00e3o por osmose :)"}
+  ,"created_at":"Tue Apr 07 12:34:34 +0000 2009","profile_text_color":"333333","screen_name":"alberto_souza",
+  "show_all_inline_media":false,"contributors_enabled":false,
+  "profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png",
+  "id_str":"29437870","notifications":false,"favourites_count":80,"profile_link_color":"0084B4",
+  "default_profile_image":false,"statuses_count":1844,"verified":false,"time_zone":"Santiago",
+  "id":29437870,"default_profile":true,"lang":"en","profile_background_color":"C0DEED",
+  "followers_count":317,"profile_image_url":"http:\/\/a3.twimg.com\/profile_images\/257134529\/PHOT0023_normal.JPG"}"""
 
   behavior of "parsing the profile xml"
 
   it should "create the profile object based on returned xml" in {
-    val profile = new SocialIntegrationReader().from[TwitterProfile](profileXML.toString)
-    profile.getName should be === "Alberto Souza"
+    val profile = new SocialIntegrationReader().from(jsonProfile,classOf[TwitterProfile])
+    profile.getName should be === "Alberto Luiz Souza"
     profile.getImage should be === "http://a3.twimg.com/profile_images/257134529/PHOT0023_normal.JPG"
     profile.getId should be === "29437870"
-    profile.getNumberOfFollowers should be === 318
+    profile.getNumberOfFollowers should be === 317
     profile.getScreenName should be === "alberto_souza"
   }
-
 
 
 }

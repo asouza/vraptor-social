@@ -20,6 +20,7 @@ libraryDependencies ++= Seq(
   "com.thoughtworks.xstream" % "xstream"               % "1.4.1"                   % "compile",
   "br.com.caelum.vraptor"    % "vraptor-environment"   % "1.0.1"                   % "compile",
   "javax.servlet"            % "javax.servlet-api"     % "3.0.1"                   % "compile",
+  "org.codehaus.jettison"    % "jettison"              % "1.3"                     % "compile",
   "org.scalatest"            %% "scalatest"            % "1.6.1"                   % "test",
   "org.mockito"              % "mockito-core"          % "1.8.5"           		   % "test"
 )
